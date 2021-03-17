@@ -10,7 +10,7 @@
         </TabViewItem>
 
         <TabViewItem title="Checkout" class="h2 text-capitalize">
-          <Checkout :cart="cart" @removeItem="removeFromCart" />
+          <Checkout :cart="cart" @removeItem="removeFromCart" @hasBought="submitOrder" />
         </TabViewItem>
       </TabView>
   </page>
@@ -41,6 +41,7 @@ export default {
     submitOrder(){
       if (this.cart.length > 0 ){
         alert("Order Submitted !")
+        this.cart = []
         //Add to order via mongo here       
       } else {
         alert("Nothing in cart to order.")
