@@ -4,7 +4,7 @@
     <ListView for="item in cart" @itemTap="removeItem">
       <v-template>
         <StackLayout>
-          <Label :text="item.title"></Label>
+          <Label :text="item.topic"></Label>
           <Label :text="`Price: ${item.price}`"></Label>
           <Label :text="`Spaces left: ${item.spaces}`"></Label>
         </StackLayout>
@@ -12,7 +12,7 @@
     </ListView>
     <TextField hint="Name" v-model="name" />
     <TextField hint="Number" v-model="number" />
-
+    <button @tap="bought">Buy now</button>
   </StackLayout>
 </template>
 
@@ -30,6 +30,9 @@ export default {
     removeItem(event) {
       this.$emit("removeItem", event.item);
       event.item.spaces++
+    },
+    bought(){
+      this.$emit("hasBought")
     }
   },
 };
