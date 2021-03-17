@@ -20,69 +20,16 @@ export default {
   name: "Lessons",
   data() {
     return {
-      lessons: [
-        /*{
-          id: 0,
-          title: "Maths",
-          location: "London",
-          price: 150,
-          spaces: 5,
-          image: "~/components/images/math.png",
-        },
-        {
-          id: 1,
-          title: "English",
-          location: "Oxford",
-          price: 100,
-          spaces: 5,
-          image: "~/components/images/english.png",
-        },
-        {
-          id: 2,
-          title: "Physics",
-          location: "Manchester",
-          price: 200,
-          spaces: 5,
-          image: "~/components/images/physics.png",
-        },
-        {
-          id: 3,
-          title: "Chemistry",
-          location: "Bristol",
-          price: 120,
-          spaces: 5,
-          image: "~/components/images/chem.png",
-        },
-        {
-          id: 4,
-          title: "Music",
-          location: "Brighton",
-          price: 200,
-          spaces: 5,
-          image: "~/components/images/music.png",
-        },
-        {
-          id: 5,
-          title: "Theatre",
-          location: "Edinburgh",
-          price: 180,
-          spaces: 5,
-          image: "~/components/images/theatre.png",
-        },*/
-      ],
+      lessons: [],
     };
   },
-  created: function(){
-    fetch('https://tester3145.herokuapp.com/collection/lessons').then(
-        function(response){
-            response.json().then(
-                function(json){
-                    app.lessons = json
-                }
-            )
-        }
-    )
-},
+created() {
+    fetch("https://tester3145.herokuapp.com/collection/lessons")
+      .then((res) => res.json())
+      .then((data) => {
+        this.lessons = data;
+      });
+  },
   methods: {
       addProduct(event){
           if(event.item.spaces > 0){
