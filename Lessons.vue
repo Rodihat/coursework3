@@ -33,7 +33,6 @@ created() {
   methods: {
       addProduct(event){
           if(event.item.spaces > 0){
-              event.item.spaces -= 1
               this.$emit('addProduct', event.item)
           }else{
               alert("No more spaces left !")
