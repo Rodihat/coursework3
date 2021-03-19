@@ -12,7 +12,7 @@
     </ListView>
     <TextField hint="Name" v-model="name" />
     <TextField hint="Number" v-model="number" />
-    <button @tap="bought">Buy now</button>
+    <button @tap="submitOrder">Buy now</button>
   </StackLayout>
 </template>
 
@@ -24,6 +24,7 @@ export default {
     return {
       name: "",
       number: "",
+      i:0
     };
   },
   methods: {
@@ -31,8 +32,29 @@ export default {
       this.$emit("removeItem", event.item);
       event.item.spaces++
     },
-    bought(){
-      this.$emit("hasBought")
+    submitOrder(){
+      var lessonTitle = []
+      if (this.cart.length > 0 && this.name !== "" && this.number !== ""){
+        for (var i = 0 ; this.i < this.cart.length; this.i++){
+          lessonTitle.push(this.cart[i].topic)            
+        }
+        const newProduct = {subject:lessonTitle}
+            fetch('https://tester3145.herokuapp.com/collection/orders', {
+              method: 'POST', 
+              headers: {
+              'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(newProduct),
+              })
+              .then(response => response.json())
+              .then(responseJSON => {
+              console.log('Success:', responseJSON);
+              alert("Order added!")
+              })
+      this.cart = []
+      } else {
+        alert("Ensure cart has item and full details are entered.")
+      }
     }
   },
 };
