@@ -10,7 +10,7 @@
         </TabViewItem>
 
         <TabViewItem title="Checkout" class="h2 text-capitalize">
-          <Checkout :cart="cart" @removeItem="removeFromCart" @hasBought="submitOrder" />
+          <Checkout :cart="cart" @removeItem="removeFromCart"/>
         </TabViewItem>
       </TabView>
   </page>
@@ -32,20 +32,12 @@ export default {
   methods: {
     addToCart(product) {
       this.cart.push(product);
-      //alert("Added to cart: " + product.title)
+      product.spaces-=1
     },
     removeFromCart(item) {
       const index = this.cart.indexOf(item);
       this.cart.splice(index, 1);
-    },
-    submitOrder(){
-      if (this.cart.length > 0 ){
-        alert("Order Submitted !")
-        this.cart = []
-        //Add to order via mongo here       
-      } else {
-        alert("Nothing in cart to order.")
-      }
+      item.spaces++
     },
   }
 };
