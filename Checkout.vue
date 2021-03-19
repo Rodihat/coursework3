@@ -35,10 +35,12 @@ export default {
     submitOrder(){
       var lessonTitle = []
       if (this.cart.length > 0 && this.name !== "" && this.number !== ""){
-        for (var i = 0 ; this.i < this.cart.length; this.i++){
-          lessonTitle.push(this.cart[i].topic)            
+        var i = 0
+        while (i < this.cart.length){
+          lessonTitle.push(this.cart[i].topic)
+          i++
         }
-        const newProduct = {subject:lessonTitle}
+        const newProduct = {name:this.name, number:this.number,LessonsOrdered:lessonTitle}
             fetch('https://tester3145.herokuapp.com/collection/orders', {
               method: 'POST', 
               headers: {
