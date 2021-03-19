@@ -23,8 +23,7 @@ export default {
   data() {
     return {
       name: "",
-      number: "",
-      i:0
+      number: ""
     };
   },
   methods: {
