@@ -51,7 +51,9 @@ export default {
               console.log('Success:', responseJSON);
               alert("Order added!")
               })
-      this.cart = []
+      while(this.cart.length > 0){
+        this.cart.pop()
+      }
       } else {
         alert("Ensure cart has item and full details are entered.")
       }
