@@ -29,7 +29,6 @@ export default {
   methods: {
     removeItem(event) {
       this.$emit("removeItem", event.item);
-      event.item.spaces++
     },
     submitOrder(){
       var lessonTitle = []
